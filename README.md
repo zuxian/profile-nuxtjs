@@ -1,14 +1,13 @@
-# Nuxt 3 Starter
+# zuxian的个人简介
 
-We recommend to look at the [documentation](https://v3.nuxtjs.org).
 
-## Preview
+### 项目预览
 ![image](https://user-images.githubusercontent.com/38668796/179501879-b1efa419-8419-4c27-a79e-d185cb2884b7.png)
 
 
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/productdevbook/nuxt3-app)
+[![1111111](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/productdevbook/nuxt3-app)
 
-## Deploy your own
+### 项目用的技术栈
 
 [![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/productdevbook/nuxt3-app)
 
@@ -16,9 +15,14 @@ We recommend to look at the [documentation](https://v3.nuxtjs.org).
 
 This starter template also includes:
 
+- We recommend to look at the [nuxtjs-documentation](https://v3.nuxtjs.org).
+
 - [Tailwind CSS v3](https://github.com/tailwindlabs/tailwindcss)
 - [Eslint](https://eslint.org)
 - [Headless UI](https://headlessui.dev/vue/menu) - unstyled, fully accessible UI components, designed to integrate beautifully with Tailwind CSS
+   https://headlessui.com/
+
+   
 - [Icones](https://github.com/antfu/icones) - beautiful hand-crafted SVG icons with [Unocss](https://github.com/unocss/unocss) used. 
 
 First-party plugins needed for Tailwind UI:
@@ -32,58 +36,126 @@ First-party plugins needed for Tailwind UI:
 Best Nuxt with Plugins:
 - [Pinia](https://github.com/posva/pinia)
 
-## Setup
 
-Make sure to install the dependencies
+
+###  项目运行
+
+- 安装依赖
 
 ```bash
 yarn install
 ```
 
-## Development
+- 开发环境
 
-Start the development server on http://localhost:3000
+http://localhost:3000
 
 ```bash
 yarn dev
 ```
 
-## Production
-
-Build the application for production:
+- 生产环境
 
 ```bash
+# 构建
 yarn build
-```
 
-```bash
+# 运行
 yarn start
 ```
 
-## Dependencies Update
-
-If you want to update the libraries, I left a nice command for you. Select it with space and press enter.
+- 依赖更新
 
 ```bash
+# 按空格键+enter键
 yarn allupdate
-```
-Example
-```
-➜  nuxt3-app git:(master) yarn allupdate
-yarn run v1.22.11
-$ yarn upgrade-interactive --latest
-info Color legend : 
- "<red>"    : Major Update backward-incompatible updates 
- "<yellow>" : Minor Update backward-compatible features 
- "<green>"  : Patch Update backward-compatible bug fixes
-? Choose which packages to update. (Press <space> to select, <a> to toggle all, <i> to invert selection)
- devDependencies
-   name   range   from                       to                      url
-❯◯ nuxt3  latest  3.0.0-27237303.6acfdcd  ❯  3.0.0-27238235.a1bcc53  
+
+# 实际执行 yarn upgrade-interactive --latest
 ```
 
-## Stay in touch
-- Website - [https://productdevbook.com](https://productdevbook.com/)
-- Twitter - [@productdevbook](https://twitter.com/productdevbook)
 
-Checkout the [deployment documentation](https://v3.nuxtjs.org/docs/deployment).
+## 项目详细介绍
+
+### Nuxt3 新特性
+
+>更轻量：以现代浏览器为基础的情况下，服务器部署和客户端产物最多减小75倍。
+更快：用动态服务端代码来优化冷启动。
+Hybird：增量动态生成和其他高级模式现在都成为可能。
+Suspense: 导航前后可在任何组件中获取数据。
+Composition API : 使用Composition API 和 Nuxt3的composables 实现真正的可复用性。
+Nuxt CLI ： 权限的零依赖体验，助你轻松搭建项目和集成模块。
+Nuxt Devtools ：专属调试工具，更多的信息和快速修复，在浏览器中高效工作。
+Nuxt Kit ：全新的基于 TypeScript 和跨版本兼容的模块开发。
+Webpack5 ： 更快的构建速度和更小的构建包，并且零配置。
+Vite：用Vite作为你的打包器，体验轻量级的快速HMR。
+Vue3 ： 完全支持Vue3语法，这一点特别关键。
+TypeScript：由原生TypeScript和ESM构成，没有额外配置步骤。
+
+
+- 组件库：headlessui
+
+
+https://headlessui.com/
+
+
+
+-  一键换肤
+
+配置文件nuxt.config.ts引进了模块 `@nuxtjs/color-mode`
+
+参考文档：[color-mode.nuxtjs.org](https://color-mode.nuxtjs.org/) 
+
+
+
+- 国际化语言
+
+vue-i18n
+
+
+-  图标库
+
+unocss icons 使用图标预设
+
+https://juejin.cn/post/7028892490803445767
+
+https://github.com/unocss/unocss/tree/main/packages/nuxt
+
+配置文件nuxt.config.ts
+
+
+```js
+unocss: {
+   uno: false,
+   preflight: false,
+   icons: true,
+   presets: [
+      presetIcons({
+         scale: 1.2,
+         extraProperties: {
+            display: 'inline-block',
+         },
+      }),
+   ],
+   safelist: ['i-twemoji-flag-us-outlying-islands', 'i-twemoji-flag-turkey'],
+},
+```
+
+图标库查找： https://iconify.design/
+
+unocss/preset-icons ---> 组件名字使用 unoicon
+
+```js
+<UnoIcon class="i-ph-github-logo-duotone" />
+
+// 或者
+<div class="i-carbon-3d-cursor"  text-3xl text-white />
+<button text-white text-3xl class="i-carbon-sun" />
+```
+
+
+
+## 与我联系
+
+
+fuzuxian
+

@@ -11,6 +11,7 @@ export default defineNuxtConfig({
     // unocss plugin - https://github.com/unocss/unocss
     '@unocss/nuxt',
     '@intlify/nuxt3',
+    // 一键换肤 https://color-mode.nuxtjs.org/
     '@nuxtjs/color-mode',
   ],
 
