@@ -10,6 +10,13 @@ const locale = useState<string>('locale.i18n')
       class="bg-white text-gray-800 antialiased transition-colors duration-300 dark:bg-gray-900 dark:text-gray-200"
     >
       <NuxtLayout>
+        <div class="mb-4 flex items-center justify-between">
+          <div class="flex space-x-2">
+            <TemLanguageChange />
+            <TemColorChange />
+          </div>
+        </div>
+
         <NuxtPage />
       </NuxtLayout>
     </Body>

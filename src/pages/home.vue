@@ -18,6 +18,7 @@ onMounted(() => {
 
 onBeforeMount(() => {
   clearInterval(Number(timer))
+  timer = null
 })
 </script>
 
