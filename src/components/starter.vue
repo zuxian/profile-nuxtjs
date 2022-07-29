@@ -30,35 +30,29 @@ const lists = computed<ILink[]>(() => [
 
       <div class="flex flex-wrap -mx-2">
         <div class="w-1/3 p-2">
-          <NuxtLink :to="'home'">
-            <div>
-              <a href="#" class="block mb-8 bg-black hover:bg-gray-700">
-                <img src="https://images.unsplash.com/photo-1499175898579-d743fea6e7dc?w=800" class="w-full h-80 opacity-75">
-              </a>
-              <a href="#" class="block text-xl text-center">关于我</a>
+          <NuxtLink to="home">
+            <div class="block mb-8 bg-black hover:bg-gray-700">
+              <img src="https://images.unsplash.com/photo-1499175898579-d743fea6e7dc?w=800" class="w-full h-80 opacity-75">
             </div>
+            <div class="block text-xl text-center">关于我</div>
           </NuxtLink>
         </div>
 
         <div class="w-1/3 p-2">
           <NuxtLink to="portfolio">
-            <div>
-              <a href="#" class="block mb-8 bg-black hover:bg-gray-700">
-                <img src="https://images.unsplash.com/photo-1477064996809-dae46985eee7?w=800" class="w-full h-80 opacity-75">
-              </a>
-              <a href="#" class="block text-xl text-center">作品集</a>
+            <div class="block mb-8 bg-black hover:bg-gray-700">
+              <img src="https://images.unsplash.com/photo-1477064996809-dae46985eee7?w=800" class="w-full h-80 opacity-75">
             </div>
+            <div class="block text-xl text-center">作品集</div>
           </NuxtLink>
         </div>
 
         <div class="w-1/3 p-2">
           <NuxtLink to="life">
-            <div>
-              <a href="#" class="block mb-8 bg-black hover:bg-gray-700">
-                <img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?w=800" class="w-full h-80 opacity-75">
-              </a>
-              <a href="#" class="block text-xl text-center">生活</a>
+            <div class="block mb-8 bg-black hover:bg-gray-700">
+              <img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?w=800" class="w-full h-80 opacity-75">
             </div>
+            <div class="block text-xl text-center">生活</div>
           </NuxtLink>
         </div>
 
