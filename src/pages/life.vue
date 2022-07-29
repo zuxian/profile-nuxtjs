@@ -4,7 +4,7 @@ import { reactive, ref } from 'vue'
 let timer: NodeJS.Timer | null = null
 let open = ref(false)
 let currentImage = ref(0)
-const images = reactive( [
+const imagesArr = reactive( [
         'https://images.unsplash.com/photo-1599058917677-0adfe92e05f2?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=1949&q=80',
         'https://images.unsplash.com/photo-1599058917212-d750089bc07e?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1949&q=80',
         'https://images.unsplash.com/photo-1599058917727-824293170100?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1949&q=80',
@@ -13,16 +13,16 @@ const images = reactive( [
 onMounted(() => {
   timer = setInterval(() => {
     console.log('----setInterval----')
-    imageFun()
+    imagebackFun()
   }, 3000)
 })
 
-const imageFun = () => {
-  currentImage.value = currentImage.value < images.length - 1 ? currentImage.value + 1 : 0
+const imagebackFun = () => {
+  currentImage.value = currentImage.value < imagesArr.length - 1 ? currentImage.value + 1 : 0
 }
 
 const imageTopFun = () => {
-  currentImage.value = currentImage.value > 0 ? currentImage.value - 1 : images.length - 1 
+  currentImage.value = currentImage.value > 0 ? currentImage.value - 1 : imagesArr.length - 1 
 }
 
 onBeforeMount(() => {
@@ -33,49 +33,11 @@ onBeforeMount(() => {
 
 <template>
 <div class="font-sans antialiased bg-gray-50">
-    <div class="relative z-40 relative px-6 text-white">
-        <div class="h-32 py-4 container mx-auto flex items-center justify-between relative z-10">
-            <a href="/" class="uppercase font-bold text-2xl flex items-center justify-start h-full hover:opacity-50">fettle</a>
-            <div class="relative z-40 flex-1 text-right">
-                <div :class="{ 'flex' : open, 'hidden' : open === false }" class="z-40 px-6 fixed md:relative top-0 left-0 w-full md:w-auto h-screen md:h-auto md:flex flex-col md:flex-row items-center justify-start md:justify-end pt-32 md:pt-0 overflow-y-scroll md:overflow-visible bg-gray-200 text-gray-900 md:text-current md:bg-transparent leading-loose text-cyan-900 text-sm md:text-sm font-semibold tracking-widest hidden uppercase font-heading">
-                    <a href="/" class="text-left block w-full md:w-auto border-b border-gray-300 md:border-none py-4 md:py-0 md:ml-8 hover:opacity-50">Home</a>
-                    <a href="/about" class="text-left block w-full md:w-auto border-b border-gray-300 md:border-none py-4 md:py-0 md:ml-8 hover:opacity-50">About</a>
-                    <a href="/blog" class="text-left block w-full md:w-auto border-b border-gray-300 md:border-none py-4 md:py-0 md:ml-8 hover:opacity-50">Blog</a>
-                    <a href="/portfolio" class="text-left block w-full md:w-auto border-b border-gray-300 md:border-none py-4 md:py-0 md:ml-8 hover:opacity-50">Portfolio</a>
-                    <a href="/contact" class="text-left block w-full md:w-auto border-b border-gray-300 md:border-none py-4 md:py-0 md:ml-8 hover:opacity-50">Contact</a>
-                    <div class="flex md:hidden items-center justify-center my-12">
-                        <a href="#" class="mx-4">
-                            <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24">
-                                <path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"/>
-                            </svg>
-                        </a>
-                        <a href="#" class="mx-4">
-                            <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24">
-                                <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
-                            </svg>
-                        </a>
-                        <a href="#" class="mx-4">
-                            <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24">
-                                <path d="M12 0C8.74 0 8.333.015 7.053.072 5.775.132 4.905.333 4.14.63c-.789.306-1.459.717-2.126 1.384S.935 3.35.63 4.14C.333 4.905.131 5.775.072 7.053.012 8.333 0 8.74 0 12s.015 3.667.072 4.947c.06 1.277.261 2.148.558 2.913.306.788.717 1.459 1.384 2.126.667.666 1.336 1.079 2.126 1.384.766.296 1.636.499 2.913.558C8.333 23.988 8.74 24 12 24s3.667-.015 4.947-.072c1.277-.06 2.148-.262 2.913-.558.788-.306 1.459-.718 2.126-1.384.666-.667 1.079-1.335 1.384-2.126.296-.765.499-1.636.558-2.913.06-1.28.072-1.687.072-4.947s-.015-3.667-.072-4.947c-.06-1.277-.262-2.149-.558-2.913-.306-.789-.718-1.459-1.384-2.126C21.319 1.347 20.651.935 19.86.63c-.765-.297-1.636-.499-2.913-.558C15.667.012 15.26 0 12 0zm0 2.16c3.203 0 3.585.016 4.85.071 1.17.055 1.805.249 2.227.415.562.217.96.477 1.382.896.419.42.679.819.896 1.381.164.422.36 1.057.413 2.227.057 1.266.07 1.646.07 4.85s-.015 3.585-.074 4.85c-.061 1.17-.256 1.805-.421 2.227-.224.562-.479.96-.899 1.382-.419.419-.824.679-1.38.896-.42.164-1.065.36-2.235.413-1.274.057-1.649.07-4.859.07-3.211 0-3.586-.015-4.859-.074-1.171-.061-1.816-.256-2.236-.421-.569-.224-.96-.479-1.379-.899-.421-.419-.69-.824-.9-1.38-.165-.42-.359-1.065-.42-2.235-.045-1.26-.061-1.649-.061-4.844 0-3.196.016-3.586.061-4.861.061-1.17.255-1.814.42-2.234.21-.57.479-.96.9-1.381.419-.419.81-.689 1.379-.898.42-.166 1.051-.361 2.221-.421 1.275-.045 1.65-.06 4.859-.06l.045.03zm0 3.678c-3.405 0-6.162 2.76-6.162 6.162 0 3.405 2.76 6.162 6.162 6.162 3.405 0 6.162-2.76 6.162-6.162 0-3.405-2.76-6.162-6.162-6.162zM12 16c-2.21 0-4-1.79-4-4s1.79-4 4-4 4 1.79 4 4-1.79 4-4 4zm7.846-10.405c0 .795-.646 1.44-1.44 1.44-.795 0-1.44-.646-1.44-1.44 0-.794.646-1.439 1.44-1.439.793-.001 1.44.645 1.44 1.439z"/>
-                            </svg>
-                        </a>
-                        <a href="#" class="mx-4">
-                            <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24">
-                                <path d="M12.017 0C5.396 0 .029 5.367.029 11.987c0 5.079 3.158 9.417 7.618 11.162-.105-.949-.199-2.403.041-3.439.219-.937 1.406-5.957 1.406-5.957s-.359-.72-.359-1.781c0-1.663.967-2.911 2.168-2.911 1.024 0 1.518.769 1.518 1.688 0 1.029-.653 2.567-.992 3.992-.285 1.193.6 2.165 1.775 2.165 2.128 0 3.768-2.245 3.768-5.487 0-2.861-2.063-4.869-5.008-4.869-3.41 0-5.409 2.562-5.409 5.199 0 1.033.394 2.143.889 2.741.099.12.112.225.085.345-.09.375-.293 1.199-.334 1.363-.053.225-.172.271-.401.165-1.495-.69-2.433-2.878-2.433-4.646 0-3.776 2.748-7.252 7.92-7.252 4.158 0 7.392 2.967 7.392 6.923 0 4.135-2.607 7.462-6.233 7.462-1.214 0-2.354-.629-2.758-1.379l-.749 2.848c-.269 1.045-1.004 2.352-1.498 3.146 1.123.345 2.306.535 3.55.535 6.607 0 11.985-5.365 11.985-11.987C23.97 5.39 18.592.026 11.985.026L12.017 0z"/>
-                            </svg>
-                        </a>
-                    </div>
-                    <button @click="open = false" type="button" :class="{ 'inline-block' : open, 'hidden' : !open }" class="md:hidden absolute top-0 right-0 leading-none uppercase tracking-widest font-semibold z-50 hidden px-6 h-32 text-gray-900 flex items-center justify-center">Close</button>
-                </div>
-                <button @click="open = true" type="button" :class="{ 'hidden' : open, 'inline-block' : !open }" class="block md:hidden text-4xl font-thin inline-block">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-8 h-8">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 8h16M4 16h16"/>
-                    </svg>
-                </button>
-            </div>
-        </div>
-    </div>
-    <div class="w-full h-screen relative z-20 -mt-32 px-12 flex items-center justify-center bg-green-900">
+    <!-- <div class="relative z-40 relative px-6 text-white"> -->
+        <!-- <div class=" py-4 container mx-auto flex items-center justify-between relative z-10">
+        </div> w-full h-screen-->
+    <!-- </div> -->
+    <div class="w-full h-screen relative -mt-32 px-12 flex items-center justify-center bg-green-900">
         <div class="h-full w-full absolute inset-0 bg-gradient-to-b from-black to-transparent opacity-30"></div>
         <div class="relative z-10 text-center px-12">
             <h1 class="md:max-w-lg lg:max-w-lg xl:max-w-2xl mx-auto text-3xl lg:text-4xl xl:text-5xl font-black leading-relaxed lg:leading-relaxed xl:leading-normal text-white font-display">Lorem ipsum dolor sit</h1>
@@ -83,100 +45,177 @@ onBeforeMount(() => {
                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
             </div>
         </div>
-        <img :src="images[currentImage]" class="absolute top-0 left-0 w-full h-full object-cover opacity-90">
-        <div class="absolute z-20 top-1/2 left-0 w-full flex items-center justify-between px-6 md:px-12">
+        <img :src="imagesArr[currentImage]" class="absolute top-0 left-0 w-full h-full object-cover opacity-90">
+        <div class="absolute top-1/2 left-0 w-full flex items-center justify-between px-6 md:px-12">
             <button @click="imageTopFun()" class="hover:opacity-50">
                 <svg class="w-12 h-12 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M7 16l-4-4m0 0l4-4m-4 4h18"/>
                 </svg>
             </button>
-            <button @click="imageFun()" class="hover:opacity-50">
+            <button @click="imagebackFun()" class="hover:opacity-50">
                 <svg class="w-12 h-12 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
                 </svg>
             </button>
         </div>
     </div>
+
+    <!-- 兴趣总览 -->
+    <div class="relative p-12 md:p-24 md:pt-12">
+        <h3 class="text-xs uppercase tracking-widest text-center mb-2 text-gray-800">Featured Links</h3>
+        <h2 class="text-2xl uppercase tracking-widest text-center lg:text-4xl font-heading mb-20 text-gray-900">标签总览</h2>
+        <div class="lg:grid grid-cols-4 grid-rows-3 gap-5 font-display text-3xl text-white">
+            <div class="bg-black col-span-1 row-span-1 relative flex items-center justify-center py-24">
+                <span class="relative z-10">无人机、拍照</span>
+                <img src="https://images.unsplash.com/photo-1465310477141-6fb93167a273?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" class="absolute inset-0 w-full h-full object-cover opacity-50 hover:opacity-25">
+            </div>
+            <div class="bg-black col-span-1 row-span-1 relative flex items-center justify-center py-24">
+                <span class="relative z-10">衣服控</span>
+                <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" class="absolute inset-0 w-full h-full object-cover opacity-50 hover:opacity-25">
+            </div>
+            <div class="bg-black col-span-2 row-span-2 relative flex items-center justify-center py-24">
+                <span class="relative z-10">95年老仙女单身冠军</span>
+                <img src="https://images.unsplash.com/photo-1594381898411-846e7d193883?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=934&q=80" class="absolute inset-0 w-full h-full object-cover opacity-50 hover:opacity-25">
+            </div>
+            <div class="bg-black col-span-2 row-span-2 relative flex items-center justify-center py-24">
+                <span class="relative z-10">技术宅女</span>
+                <img src="https://images.unsplash.com/photo-1575052814086-f385e2e2ad1b?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" class="absolute inset-0 w-full h-full object-cover opacity-50 hover:opacity-25">
+            </div>
+            <div class="bg-black col-span-1 row-span-1 relative flex items-center justify-center py-24">
+                <span class="relative z-10">夜跑达人</span>
+                <img src="https://images.unsplash.com/photo-1485727749690-d091e8284ef3?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1400&q=80" class="absolute inset-0 w-full h-full object-cover opacity-50 hover:opacity-25">
+            </div>
+            <div class="bg-black col-span-1 row-span-1 relative flex items-center justify-center py-24">
+                <span class="relative z-10">宇宙第一美</span>
+                <img src="https://images.unsplash.com/photo-1434494878577-86c23bcb06b9?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" class="absolute inset-0 w-full h-full object-cover opacity-50 hover:opacity-25">
+            </div>
+        </div>
+    </div>
+
+    <div class="container mx-auto px-6 py-12">
+        <h2 class="font-display font-semibold text-3xl">Testimonials</h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-24 mt-12">
+            <div class="relative">
+                <p class="relative z-10 text-justify">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                <div class="relative z-10 text-sm flex items-center justify-end">
+                    <svg class="inline-block w-32 h-32 -mb-8" x="0px" y="0px" viewBox="0 0 100 125">
+                        <path d="M91.8 45c-3.9 0-5.9 2.3-7.7 4.3-1.7 2-3.2 3.7-6.2 3.7s-4.5-1.7-6.2-3.7C70 47.3 68 45 64 45c-3.9 0-5.9 2.3-7.7 4.3-1.7 2-3.2 3.7-6.2 3.7s-4.5-1.7-6.2-3.7c-1.8-2-3.8-4.3-7.7-4.3-3.9 0-5.9 2.3-7.7 4.3-1.7 2-3.2 3.7-6.2 3.7s-4.5-1.7-6.2-3.7c-1.8-2-3.8-4.3-7.7-4.3-.6 0-1 .4-1 1s.4 1 1 1c3 0 4.5 1.7 6.2 3.7 1.8 2 3.8 4.3 7.7 4.3 3.9 0 5.9-2.3 7.7-4.3 1.7-2 3.2-3.7 6.2-3.7s4.5 1.7 6.2 3.7c1.8 2 3.8 4.3 7.7 4.3 3.9 0 5.9-2.3 7.7-4.3 1.7-2 3.2-3.7 6.2-3.7s4.5 1.7 6.2 3.7c1.8 2 3.8 4.3 7.7 4.3 3.9 0 5.9-2.3 7.7-4.3 1.7-2 3.2-3.7 6.2-3.7.6 0 1-.4 1-1s-.4-1-1-1z"/>
+                    </svg>
+                    <span>Elle Spearman</span>
+                </div>
+                <svg class="absolute top-0 left-0 w-28 h-28 -mt-10 -ml-8 opacity-5" viewBox="0 0 95.333 95.332">
+                    <path d="M30.512,43.939c-2.348-0.676-4.696-1.019-6.98-1.019c-3.527,0-6.47,0.806-8.752,1.793
+                                            c2.2-8.054,7.485-21.951,18.013-23.516c0.975-0.145,1.774-0.85,2.04-1.799l2.301-8.23c0.194-0.696,0.079-1.441-0.318-2.045
+                                            s-1.035-1.007-1.75-1.105c-0.777-0.106-1.569-0.16-2.354-0.16c-12.637,0-25.152,13.19-30.433,32.076
+                                            c-3.1,11.08-4.009,27.738,3.627,38.223c4.273,5.867,10.507,9,18.529,9.313c0.033,0.001,0.065,0.002,0.098,0.002
+                                            c9.898,0,18.675-6.666,21.345-16.209c1.595-5.705,0.874-11.688-2.032-16.851C40.971,49.307,36.236,45.586,30.512,43.939z"/>
+                    <path d="M92.471,54.413c-2.875-5.106-7.61-8.827-13.334-10.474c-2.348-0.676-4.696-1.019-6.979-1.019
+                                            c-3.527,0-6.471,0.806-8.753,1.793c2.2-8.054,7.485-21.951,18.014-23.516c0.975-0.145,1.773-0.85,2.04-1.799l2.301-8.23
+                                            c0.194-0.696,0.079-1.441-0.318-2.045c-0.396-0.604-1.034-1.007-1.75-1.105c-0.776-0.106-1.568-0.16-2.354-0.16
+                                            c-12.637,0-25.152,13.19-30.434,32.076c-3.099,11.08-4.008,27.738,3.629,38.225c4.272,5.866,10.507,9,18.528,9.312
+                                            c0.033,0.001,0.065,0.002,0.099,0.002c9.897,0,18.675-6.666,21.345-16.209C96.098,65.559,95.376,59.575,92.471,54.413z"/>
+                </svg>
+            </div>
+            <div class="relative">
+                <p class="relative z-10 text-justify">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                <div class="relative z-10 text-sm flex items-center justify-end">
+                    <svg class="inline-block w-32 h-32 -mb-8" x="0px" y="0px" viewBox="0 0 100 125">
+                        <path d="M91.8 45c-3.9 0-5.9 2.3-7.7 4.3-1.7 2-3.2 3.7-6.2 3.7s-4.5-1.7-6.2-3.7C70 47.3 68 45 64 45c-3.9 0-5.9 2.3-7.7 4.3-1.7 2-3.2 3.7-6.2 3.7s-4.5-1.7-6.2-3.7c-1.8-2-3.8-4.3-7.7-4.3-3.9 0-5.9 2.3-7.7 4.3-1.7 2-3.2 3.7-6.2 3.7s-4.5-1.7-6.2-3.7c-1.8-2-3.8-4.3-7.7-4.3-.6 0-1 .4-1 1s.4 1 1 1c3 0 4.5 1.7 6.2 3.7 1.8 2 3.8 4.3 7.7 4.3 3.9 0 5.9-2.3 7.7-4.3 1.7-2 3.2-3.7 6.2-3.7s4.5 1.7 6.2 3.7c1.8 2 3.8 4.3 7.7 4.3 3.9 0 5.9-2.3 7.7-4.3 1.7-2 3.2-3.7 6.2-3.7s4.5 1.7 6.2 3.7c1.8 2 3.8 4.3 7.7 4.3 3.9 0 5.9-2.3 7.7-4.3 1.7-2 3.2-3.7 6.2-3.7.6 0 1-.4 1-1s-.4-1-1-1z"/>
+                    </svg>
+                    <span>Elle Spearman</span>
+                </div>
+                <svg class="absolute top-0 left-0 w-28 h-28 -mt-10 -ml-8 opacity-5" viewBox="0 0 95.333 95.332">
+                    <path d="M30.512,43.939c-2.348-0.676-4.696-1.019-6.98-1.019c-3.527,0-6.47,0.806-8.752,1.793
+                                            c2.2-8.054,7.485-21.951,18.013-23.516c0.975-0.145,1.774-0.85,2.04-1.799l2.301-8.23c0.194-0.696,0.079-1.441-0.318-2.045
+                                            s-1.035-1.007-1.75-1.105c-0.777-0.106-1.569-0.16-2.354-0.16c-12.637,0-25.152,13.19-30.433,32.076
+                                            c-3.1,11.08-4.009,27.738,3.627,38.223c4.273,5.867,10.507,9,18.529,9.313c0.033,0.001,0.065,0.002,0.098,0.002
+                                            c9.898,0,18.675-6.666,21.345-16.209c1.595-5.705,0.874-11.688-2.032-16.851C40.971,49.307,36.236,45.586,30.512,43.939z"/>
+                    <path d="M92.471,54.413c-2.875-5.106-7.61-8.827-13.334-10.474c-2.348-0.676-4.696-1.019-6.979-1.019
+                                            c-3.527,0-6.471,0.806-8.753,1.793c2.2-8.054,7.485-21.951,18.014-23.516c0.975-0.145,1.773-0.85,2.04-1.799l2.301-8.23
+                                            c0.194-0.696,0.079-1.441-0.318-2.045c-0.396-0.604-1.034-1.007-1.75-1.105c-0.776-0.106-1.568-0.16-2.354-0.16
+                                            c-12.637,0-25.152,13.19-30.434,32.076c-3.099,11.08-4.008,27.738,3.629,38.225c4.272,5.866,10.507,9,18.528,9.312
+                                            c0.033,0.001,0.065,0.002,0.099,0.002c9.897,0,18.675-6.666,21.345-16.209C96.098,65.559,95.376,59.575,92.471,54.413z"/>
+                </svg>
+            </div>
+            <div class="relative">
+                <p class="relative z-10 text-justify">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                <div class="relative z-10 text-sm flex items-center justify-end">
+                    <svg class="inline-block w-32 h-32 -mb-8" x="0px" y="0px" viewBox="0 0 100 125">
+                        <path d="M91.8 45c-3.9 0-5.9 2.3-7.7 4.3-1.7 2-3.2 3.7-6.2 3.7s-4.5-1.7-6.2-3.7C70 47.3 68 45 64 45c-3.9 0-5.9 2.3-7.7 4.3-1.7 2-3.2 3.7-6.2 3.7s-4.5-1.7-6.2-3.7c-1.8-2-3.8-4.3-7.7-4.3-3.9 0-5.9 2.3-7.7 4.3-1.7 2-3.2 3.7-6.2 3.7s-4.5-1.7-6.2-3.7c-1.8-2-3.8-4.3-7.7-4.3-.6 0-1 .4-1 1s.4 1 1 1c3 0 4.5 1.7 6.2 3.7 1.8 2 3.8 4.3 7.7 4.3 3.9 0 5.9-2.3 7.7-4.3 1.7-2 3.2-3.7 6.2-3.7s4.5 1.7 6.2 3.7c1.8 2 3.8 4.3 7.7 4.3 3.9 0 5.9-2.3 7.7-4.3 1.7-2 3.2-3.7 6.2-3.7s4.5 1.7 6.2 3.7c1.8 2 3.8 4.3 7.7 4.3 3.9 0 5.9-2.3 7.7-4.3 1.7-2 3.2-3.7 6.2-3.7.6 0 1-.4 1-1s-.4-1-1-1z"/>
+                    </svg>
+                    <span>Elle Spearman</span>
+                </div>
+                <svg class="absolute top-0 left-0 w-28 h-28 -mt-10 -ml-8 opacity-5" viewBox="0 0 95.333 95.332">
+                    <path d="M30.512,43.939c-2.348-0.676-4.696-1.019-6.98-1.019c-3.527,0-6.47,0.806-8.752,1.793
+                                            c2.2-8.054,7.485-21.951,18.013-23.516c0.975-0.145,1.774-0.85,2.04-1.799l2.301-8.23c0.194-0.696,0.079-1.441-0.318-2.045
+                                            s-1.035-1.007-1.75-1.105c-0.777-0.106-1.569-0.16-2.354-0.16c-12.637,0-25.152,13.19-30.433,32.076
+                                            c-3.1,11.08-4.009,27.738,3.627,38.223c4.273,5.867,10.507,9,18.529,9.313c0.033,0.001,0.065,0.002,0.098,0.002
+                                            c9.898,0,18.675-6.666,21.345-16.209c1.595-5.705,0.874-11.688-2.032-16.851C40.971,49.307,36.236,45.586,30.512,43.939z"/>
+                    <path d="M92.471,54.413c-2.875-5.106-7.61-8.827-13.334-10.474c-2.348-0.676-4.696-1.019-6.979-1.019
+                                            c-3.527,0-6.471,0.806-8.753,1.793c2.2-8.054,7.485-21.951,18.014-23.516c0.975-0.145,1.773-0.85,2.04-1.799l2.301-8.23
+                                            c0.194-0.696,0.079-1.441-0.318-2.045c-0.396-0.604-1.034-1.007-1.75-1.105c-0.776-0.106-1.568-0.16-2.354-0.16
+                                            c-12.637,0-25.152,13.19-30.434,32.076c-3.099,11.08-4.008,27.738,3.629,38.225c4.272,5.866,10.507,9,18.528,9.312
+                                            c0.033,0.001,0.065,0.002,0.099,0.002c9.897,0,18.675-6.666,21.345-16.209C96.098,65.559,95.376,59.575,92.471,54.413z"/>
+                </svg>
+            </div>
+        </div>
+    </div>
+
+
     <div class="p-12 md:p-24">
         <div class="bg-gray-100 p-12 md:py-24 lg:flex">
             <div class="mx-auto max-w-4xl flex flex-wrap">
                 <img src="https://images.unsplash.com/photo-1538805060514-97d9cc17730c?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=934&q=80" class="w-full lg:w-4/12 h-full object-cover">
                 <div class="flex-1 flex items-center justify-center pt-12 lg:pt-0">
                     <div class="text-center">
-                        <h3 class="text-4xl font-display mb-8 text-gray-700">Lorem ipsum dolor sit</h3>
-                        <p class="text-sm lg:text-lg max-w-md mx-auto text-gray-500 leading-relaxed">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                        <h3 class="text-4xl font-display mb-8 text-gray-700">夜跑</h3>
+                        <div class="text-sm lg:text-lg max-w-md mx-auto text-gray-500 leading-relaxed">
+                          <p> 自律给我自由 </p>  
+                          <p> 不开心的时候，流泪不如流汗 </p>
+                          <p> 我离美人鱼的距离，只差一个人鱼线 </p>
+                          <p> 热爱生活有很多的方式，但最直接是跑一场马拉松 </p>
+                          <p> 健身前28健身后18</p>
+                          <p> 赘肉不可怕，谁露谁尴尬 </p>
+                          <p> 运动，就是和自己较量，放弃你就输了 </p>
+                          <p> 如果我能一口气吸出奶茶里的所有珍珠 </p>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <div class="p-12 md:p-24 md:pt-12">
-        <h3 class="text-xs uppercase tracking-widest text-center mb-2 text-gray-800">Featured Links</h3>
-        <h2 class="text-2xl uppercase tracking-widest text-center lg:text-4xl font-heading mb-20 text-gray-900">Work Overview</h2>
-        <div class="lg:grid grid-cols-4 grid-rows-3 gap-5 font-display text-3xl text-white">
-            <a href="#" class="bg-black col-span-1 row-span-1 relative flex items-center justify-center py-24">
-                <span class="relative z-10">About</span>
-                <img src="https://images.unsplash.com/photo-1465310477141-6fb93167a273?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" class="absolute inset-0 w-full h-full object-cover opacity-50 hover:opacity-25">
-            </a>
-            <a href="#" class="bg-black col-span-1 row-span-1 relative flex items-center justify-center py-24">
-                <span class="relative z-10">Blog</span>
-                <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" class="absolute inset-0 w-full h-full object-cover opacity-50 hover:opacity-25">
-            </a>
-            <a href="#" class="bg-black col-span-2 row-span-2 relative flex items-center justify-center py-24">
-                <span class="relative z-10">Work</span>
-                <img src="https://images.unsplash.com/photo-1594381898411-846e7d193883?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=934&q=80" class="absolute inset-0 w-full h-full object-cover opacity-50 hover:opacity-25">
-            </a>
-            <a href="#" class="bg-black col-span-2 row-span-2 relative flex items-center justify-center py-24">
-                <span class="relative z-10">Contact</span>
-                <img src="https://images.unsplash.com/photo-1575052814086-f385e2e2ad1b?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" class="absolute inset-0 w-full h-full object-cover opacity-50 hover:opacity-25">
-            </a>
-            <a href="#" class="bg-black col-span-1 row-span-1 relative flex items-center justify-center py-24">
-                <span class="relative z-10">Prints</span>
-                <img src="https://images.unsplash.com/photo-1485727749690-d091e8284ef3?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1400&q=80" class="absolute inset-0 w-full h-full object-cover opacity-50 hover:opacity-25">
-            </a>
-            <a href="#" class="bg-black col-span-1 row-span-1 relative flex items-center justify-center py-24">
-                <span class="relative z-10">FAQ</span>
-                <img src="https://images.unsplash.com/photo-1434494878577-86c23bcb06b9?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" class="absolute inset-0 w-full h-full object-cover opacity-50 hover:opacity-25">
-            </a>
-        </div>
+
+    <div class="w-full py-32 px-24 flex flex-wrap justify-around relative"> 
+        <img src="@/assets/images/8-2.jpg" class="w-64 h-64 object-cover mb-12 md:mb-0" />
+        <img src="@/assets/images/7-2.jpg" class="w-64 h-64 object-cover mb-12 md:mb-0" />
+        <img src="@/assets/images/8-1.jpg" class="w-64 h-64 object-cover mb-12 md:mb-0" />
+        <img src="@/assets/images/7.jpg" class="w-64 h-64 object-cover" />
+        <h3 class="text-6xl text-gray-800 font-bold tracking-tighter absolute top-0 left-0 mt-12 ml-20">拍</h3>
+        <h3 class="text-6xl text-gray-800 font-bold tracking-tighter absolute bottom-0 right-0 mb-16 mr-20">照</h3>
     </div>
-    <div class="p-12 md:p-24 pt-0 md:pt-0">
+
+    <div class="p-12 md:p-24">
         <div class="bg-gray-100 p-12 md:py-24 lg:flex">
             <div class="mx-auto max-w-4xl flex flex-wrap">
-                <img src="https://images.unsplash.com/photo-1549060279-7e168fcee0c2?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" class="w-full lg:w-7/12 h-full object-cover">
-                <div class="flex-1 flex items-center justify-center lg:px-12 pt-12 lg:pt-0">
+                <div class="flex-1 flex items-center justify-center pt-12 lg:pt-0">
                     <div class="text-center">
-                        <div class="uppercase tracking-widest text-xs text-gray-600 mb-4 font-display font-bold mb-10">my latest adventure</div>
-                        <div class="uppercase tracking-widest text-xs text-gray-600 mb-4">Travel</div>
-                        <h3 class="text-4xl leading-tight font-display mb-8 text-gray-700 my-6">Lorem ipsum dolor sit</h3>
-                        <a href="#" class="inline-block uppercase text-xs tracking-widest border border-gray-300 px-6 py-4 hover:bg-gray-300">See more</a>
+                        <h3 class="text-4xl font-display mb-8 text-gray-700">夜跑</h3>
+                        <div class="text-sm lg:text-lg max-w-md mx-auto text-gray-500 leading-relaxed">
+                          <p> 自律给我自由 </p>  
+                          <p> 不开心的时候，流泪不如流汗 </p>
+                          <p> 我离美人鱼的距离，只差一个人鱼线 </p>
+                          <p> 热爱生活有很多的方式，但最直接是跑一场马拉松 </p>
+                          <p> 健身前28健身后18</p>
+                          <p> 赘肉不可怕，谁露谁尴尬 </p>
+                          <p> 运动，就是和自己较量，放弃你就输了 </p>
+                          <p> 如果我能一口气吸出奶茶里的所有珍珠 </p>
+                        </div>
                     </div>
                 </div>
+                <img src="@/assets/images/7-1.jpg" class="w-full lg:w-4/12 h-full object-cover">
             </div>
         </div>
     </div>
-    <div class="container mx-auto px-6 mb-12">
-        <div class="flex h-32 lg:h-48 md:h-52 bg-black relative">
-            <div class="flex-1 h-full relative">
-                <img src="https://images.unsplash.com/photo-1591258370814-01609b341790?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=934&q=80" class="absolute inset w-full h-full object-cover opacity-50">
-            </div>
-            <div class="flex-1 h-full relative">
-                <img src="https://images.unsplash.com/photo-1598136490929-292a0a7890c2?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=1949&q=80" class="absolute inset w-full h-full object-cover opacity-50">
-            </div>
-            <div class="flex-1 h-full relative">
-                <img src="https://images.unsplash.com/photo-1554284126-aa88f22d8b74?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=2314&q=80" class="absolute inset w-full h-full object-cover opacity-50">
-            </div>
-            <div class="flex-1 h-full relative hidden lg:block">
-                <img src="https://images.unsplash.com/photo-1546483875-ad9014c88eba?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=1874&q=80" class="absolute inset w-full h-full object-cover opacity-50">
-            </div>
-            <div class="flex-1 h-full relative hidden lg:block">
-                <img src="https://images.unsplash.com/photo-1557564437-0995702f88fc?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" class="absolute inset w-full h-full object-cover opacity-50">
-            </div>
-            <div class="absolute inset-0 w-full h-full flex z-20 flex items-center justify-center">
-                <a href="#" class="bg-white px-8 py-3 text-sm tracking-widest font-heading">@novolio</a>
-            </div>
-        </div>
-    </div>
-    <div class="text-sm lg:text-base text-center font-heading pb-24 tracking-widest uppercase opacity-50">&copy; fettle. all rights reserved</div>
+
 </div>
 </template>
