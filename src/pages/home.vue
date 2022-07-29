@@ -25,55 +25,26 @@ onBeforeMount(() => {
 <template>
   <div>
     <div class="font-sans font-normal antialiased bg-white text-gray-900">
-      <div class="h-24 w-full absolute top-0 left-0 bg-black" />
-      <div class="h-24 z-20 relative container mx-auto flex items-center justify-between px-6">
-        <a href="/" class="text-xl font-extrabold italic tracking-tighter text-white uppercase">foundation</a>
-        <div class="text-white text-lg fixed bottom-0 left-0 lg:relative p-6 lg:p-0 w-full lg:w-auto max-w-lg">
-          <div :class="{ 'flex' : mobileMenu, 'hidden' : !mobileMenu }" class="lg:flex flex-col lg:flex-row items-center justify-center bg-black lg:bg-transparent pt-6 pb-8 lg:p-0 -mb-6 lg:m-0 rounded-t-3xl shadow-2xl lg:shadow-none font-bold uppercase italic lg:normal-case lg:font-normal not-italic">
-            <a href="/" class="my-2 lg:ml-6">Home</a>
-            <a href="/about" class="my-2 lg:ml-6">About</a>
-            <a href="/blog" class="my-2 lg:ml-6">Blog</a>
-            <a href="/contact" class="my-2 lg:ml-6">Contact</a>
-            <a href="#" class="ml-12 hidden lg:block">
-              <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
-              </svg>
-            </a>
-            <a href="#" class="ml-4 hidden lg:block">
-              <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-              </svg>
-            </a>
-          </div>
-          <button @click="mobileMenu = !mobileMenu" type="button" class="lg:hidden bg-black text-white rounded-3xl w-full py-4 text-center uppercase text-sm shadow-2xl lg:shadow-none focus:outline-none">
-            <template x-if="!mobileMenu">
-              <div class="flex items-center justify-center">
-                <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h8m-8 6h16" />
-                </svg>
-                Menu
-              </div>
-            </template>
-            <template v-if="mobileMenu">
-              <div class="flex items-center justify-center">
-                <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                </svg>
-                Close
-              </div>
-            </template>
-          </button>
-        </div>
-      </div>
-      <div class="-mt-32 relative w-full bg-black pt-64 pb-24">
-        <div class="relative z-10 text-center text-white text-center mx-auto max-w-xl">
-          <h1 class="text-3xl lg:text-7xl mb-4 font-bold uppercase italic">
-            BUILDING CONTRACTORS
-          </h1>
-          <a href="/about" class="inline-block rounded-full border-2 border-white text-lg px-8 py-3 hover:bg-white hover:text-gray-900">Find out more</a>
-        </div>
-        <img :src="images[currentImage]" class="w-full h-full absolute inset-0 object-cover opacity-75">
-      </div>
+   
+		<div class="w-full h-screen relative p-16">
+			<div class="relative z-20 flex flex-wrap h-full -mt-20 pt-32">	
+				<div class="w-full md:w-1/2 h-full">
+					<img src="https://images.unsplash.com/photo-1514315384763-ba401779410f?w=1400" class="w-full h-full object-cover" />
+				</div>
+				<div class="w-full md:w-1/2 p-10 flex justify-center items-center">				
+					<div class="max-w-xs">
+						<h1 class="text-6xl mb-4 leading-none">Welcome</h1>
+						<p class="mb-8 text-sm leading-relaxed">
+							Ad fugiat in dolore velit fugiat mollit dolore eu sunt tempor anim reprehenderit. Ad fugiat in dolore velit fugiat mollit dolore eu sunt tempor anim reprehenderit.
+						</p>
+						<a href="#" class="bg-gray-900 text-white uppercase font-sans text-xs px-4 py-3">Learn more <i class="ml-1 fa fa-chevron-right"></i></a>
+					</div>
+				</div>
+			</div>
+			<div class="z-10 w-1/2 h-full bg-gray-900 absolute top-0 left-0 -ml-20"></div>
+			<div class="z-10 w-1 h-64 bg-gray-100 absolute bottom-0 left-0 ml-5"></div>		
+		</div>	
+
       <div class="container mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 py-24">
         <div class="lg:px-32 lg:py-32 flex items-center justify-center">
           <div>
