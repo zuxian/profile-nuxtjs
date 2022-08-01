@@ -153,6 +153,28 @@ unocss/preset-icons ---> 组件名字使用 unoicon
 ```
 
 
+##  部署
+
+Git 全局设置:
+
+git config --global user.name "zuxian"
+git config --global user.email "zuxian_fu@163.com"
+创建 git 仓库:
+
+mkdir profile-nuxtjs
+cd profile-nuxtjs
+git init 
+touch README.md
+git add README.md
+git commit -m "first commit"
+git remote add origin https://gitee.com/zuxian/profile-nuxtjs.git
+git push -u origin "master"
+已有仓库?
+
+cd existing_git_repo
+git remote add origin https://gitee.com/zuxian/profile-nuxtjs.git
+git push -u origin "master"
+
 
 ## 与我联系
 

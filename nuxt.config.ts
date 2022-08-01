@@ -3,6 +3,7 @@ import presetIcons from '@unocss/preset-icons'
 
 export default defineNuxtConfig({
   srcDir: 'src',
+  outputDir: 'docs',
   modules: [
     '@vueuse/nuxt',
     '@nuxtjs/tailwindcss',
