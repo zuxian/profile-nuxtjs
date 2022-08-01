@@ -3,7 +3,6 @@ import presetIcons from '@unocss/preset-icons'
 
 export default defineNuxtConfig({
   srcDir: 'src',
-  outputDir: 'docs',
   modules: [
     '@vueuse/nuxt',
     '@nuxtjs/tailwindcss',
@@ -16,7 +15,34 @@ export default defineNuxtConfig({
     '@nuxtjs/color-mode',
   ],
 
+  app: {
+    // buildAssetsDir: 'static',  // 静态文件、打包的js、css文件存放路径
+    baseURL: '/profile-nuxtjs/',   // 生成的index.html 引用静态文件增加路径前缀
+  },
+  // rootDir: 'docs',
+  // outputDir: 'docs',
+
+  // buildDir: 'docs',
+  // buildDir: 'profile-nuxtjs',
+  // router: {
+  //   // mode: 'hash',
+  //   base: '/profile-nuxtjs'
+  // },
+  // generate: {
+    
+  //   // buildDir: 'profile-nuxtjs',
+  //   dir: 'docs', // gh_pages/ instead of dist/
+  //   // subFolders: true // 运行nuxt generate将为每个路由创建一个目录并生成index.html文件
+  // },
+  // env: {
+  //   // baseUrl: process.env.BASE_URL || '/profile-nuxtjs',
+  //   BASE_URL: process.env.BASE_URL,
+  //   NODE_ENV: process.env.NODE_ENV
+  // },
+
   build: {
+    
+    // publicPath: 'https://zuxian.github.io/profile-nuxtjs',
     transpile: ['@headlessui/vue'],
   },
   unocss: {
