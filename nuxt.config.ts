@@ -16,7 +16,7 @@ export default defineNuxtConfig({
   ],
 
   app: {
-    // buildAssetsDir: 'static',  // 静态文件、打包的js、css文件存放路径
+    buildAssetsDir: 'static',  // 静态文件、打包的js、css文件存放路径
     baseURL: '/profile-nuxtjs/',   // 生成的index.html 引用静态文件增加路径前缀
   },
   // rootDir: 'docs',
